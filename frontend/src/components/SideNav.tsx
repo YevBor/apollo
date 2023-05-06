@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,6 +16,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import StorageIcon from '@mui/icons-material/Storage';
 import {useNavigate} from 'react-router-dom'
+import { Box } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -77,11 +77,10 @@ export default function SideNav() {
   return (
     <>
       <CssBaseline />
-
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={()=> setOpen(!open)}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {open ? <ChevronLeftIcon />:<ChevronRightIcon /> }
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -93,6 +92,7 @@ export default function SideNav() {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                onClick={()=>navigate("/")}
               >
                 <ListItemIcon
                   sx={{
@@ -103,7 +103,7 @@ export default function SideNav() {
                 >
                     <DashboardIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} onClick={()=>navigate("/")}/>
+                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             <ListItem  disablePadding sx={{ display: 'block' }}>
@@ -113,6 +113,7 @@ export default function SideNav() {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                onClick={()=>navigate("/cameras")}
               >
                 <ListItemIcon
                   sx={{
@@ -121,9 +122,9 @@ export default function SideNav() {
                     justifyContent: 'center',
                   }}
                 >
-                    <VideocamIcon/>
+                    <VideocamIcon onClick={()=>navigate("/cameras")}/>
                 </ListItemIcon>
-                <ListItemText primary="Cameras" sx={{ opacity: open ? 1 : 0 }} onClick={()=>navigate("/cameras")}/>
+                <ListItemText primary="Cameras" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             <ListItem  disablePadding sx={{ display: 'block' }}>
@@ -132,7 +133,7 @@ export default function SideNav() {
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
-                }}
+                }} onClick={()=>navigate("/contacts")}
               >
                 <ListItemIcon
                   sx={{
@@ -143,7 +144,7 @@ export default function SideNav() {
                 >
                     <ContactsIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Contacts" sx={{ opacity: open ? 1 : 0 }} onClick={()=>navigate("/contacts")}/>
+                <ListItemText primary="Contacts" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             <ListItem  disablePadding sx={{ display: 'block' }}>
@@ -153,6 +154,7 @@ export default function SideNav() {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                onClick={()=>navigate("/data")}
               >
                 <ListItemIcon
                   sx={{
@@ -163,7 +165,7 @@ export default function SideNav() {
                 >
                     <StorageIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Data" sx={{ opacity: open ? 1 : 0 }} onClick={()=>navigate("/data")}/>
+                <ListItemText primary="Data" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
         </List>
